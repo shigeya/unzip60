@@ -1,0 +1,5 @@
+For homebrew
+
+    make -f unix/Makefile macosx_homebrew
+    make macosx_homebrew-install
+    brew link --force unzip

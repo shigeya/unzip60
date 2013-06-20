@@ -882,6 +882,11 @@ macosx_homebrew:	unix_make
 		LFLAGS1="-L/usr/local/Cellar/libiconv/1.14/lib -liconv"
 	$(STRIP) $(UNZIPS)
 
+macosx_homebrew-install:
+	$(MAKE) CFLAGS="-O3 -Wall -DBSD -I/usr/local/Cellar/libiconv/1.14/include" LF2="" \
+		prefix=/usr/local/Cellar/unzip/6.0 \
+		LFLAGS1="-L/usr/local/Cellar/libiconv/1.14/lib -liconv" install
+
 # Macintosh MacOS X (Unix-compatible enviroment), using gcc
 macosx_gcc:	unix_make
 	$(MAKE) unzips CC=gcc CFLAGS="-O3 -Wall -DBSD" LF2=""

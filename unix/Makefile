@@ -146,7 +146,7 @@ SYSTEMS1 = 386i 3Bx 7300 7300_gcc aix aix_rt amdahl amdahl_eft apollo aviion
 SYSTEMS2 = bsd bsdi bsdi_noasm bull coherent convex cray cray_opt cyber_sgi
 SYSTEMS3 = cygwin dec dnix encore eta freebsd gcc gould hk68 hp hpux
 SYSTEMS4 = isc isc_gcc isi linux linux_dos linux_noasm linux_shlib linux_shlibz
-SYSTEMS5 = lynx macosx macosx_gcc minix mips mpeix next next10 next2x next3x
+SYSTEMS5 = lynx macosx macosx_homebrew macosx_gcc minix mips mpeix next next10 next2x next3x
 SYSTEMS6 = nextfat osf1 pixel ptx pyramid qnxnto realix regulus rs6000 sco
 SYSTEMS7 = sco_dos sco_sl sco_x286 sequent sgi solaris solaris_pkg stardent
 SYSTEMS8 = stellar sunos3 sunos4 sysv sysv_gcc sysv6300 tahoe ti_sysv ultrix
@@ -873,6 +873,13 @@ lynx:		unix_make
 # Macintosh MacOS X (Unix-compatible enviroment), using standard compiler
 macosx:	unix_make
 	$(MAKE) unzips CFLAGS="-O3 -Wall -DBSD" LF2=""
+	$(STRIP) $(UNZIPS)
+
+# Macintosh MacOS X (Unix-compatible enviroment), using standard compiler, with homebrew. expect iconv 1.14 to be installed prior to make
+macosx_homebrew:	unix_make
+	$(MAKE) unzips CFLAGS="-O3 -Wall -DBSD -I/usr/local/Cellar/libiconv/1.14/include" LF2="" \
+		prefix=/usr/local/Cellar/unzip/6.0 \
+		LFLAGS1="-L/usr/local/Cellar/libiconv/1.14/lib -liconv"
 	$(STRIP) $(UNZIPS)
 
 # Macintosh MacOS X (Unix-compatible enviroment), using gcc
